@@ -37,7 +37,8 @@ def _create(name, pretrained=True, channels=3, classes=80, autoshape=True, verbo
     check_requirements(exclude=('tensorboard', 'thop', 'opencv-python'))
     set_logging(verbose=verbose)
 
-    save_dir = Path('') if str(name).endswith('.pt') else file.parent
+    #save_dir = Path('') if str(name).endswith('.pt') else file.parent
+    save_dir = file.parent
     print(name)
     path = (save_dir / name).with_suffix('.pt')  # checkpoint path
     print("path",path)
@@ -67,7 +68,7 @@ def _create(name, pretrained=True, channels=3, classes=80, autoshape=True, verbo
         raise Exception(s) from e
 
 
-def custom(path='/Users/animeshshrivastava/Downloads/yolov5/runs/train/yolo_road_det2/weights/best.pt', autoshape=True, verbose=True, device=None):
+def custom(path='runs/train/yolo_road_det2/weights/best.pt', autoshape=True, verbose=True, device=None):
     # YOLOv5 custom or local model
     return _create(path, autoshape=autoshape, verbose=verbose, device=device)
 
@@ -79,7 +80,6 @@ def yolov5n(pretrained=True, channels=3, classes=80, autoshape=True, verbose=Tru
 
 def yolov5s(pretrained=True, channels=3, classes=80, autoshape=True, verbose=True, device=None):
     # YOLOv5-small model https://github.com/ultralytics/yolov5
-    print("Am i getting called")
     return _create('yolov5s', pretrained, channels, classes, autoshape, verbose, device)
 
 
