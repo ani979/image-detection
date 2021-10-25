@@ -1,0 +1,38 @@
+<annotation>
+	<folder>xml</folder>
+	<filename>img435.jpg</filename>
+	<path>C:\Users\zenier\Desktop\Antenna Images\xml\img435.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>552</width>
+		<height>552</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>sa</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>66</xmin>
+			<ymin>4</ymin>
+			<xmax>253</xmax>
+			<ymax>525</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>sa</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>306</xmin>
+			<ymin>8</ymin>
+			<xmax>466</xmax>
+			<ymax>522</ymax>
+		</bndbox>
+	</object>
+</annotation>

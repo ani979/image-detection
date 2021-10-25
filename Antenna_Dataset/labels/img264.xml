@@ -1,0 +1,26 @@
+<annotation>
+	<folder>xml</folder>
+	<filename>img264.jpg</filename>
+	<path>C:\Users\zenier\Desktop\Antenna Images\xml\img264.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>100</width>
+		<height>174</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>sa</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>16</xmin>
+			<ymin>98</ymin>
+			<xmax>31</xmax>
+			<ymax>143</ymax>
+		</bndbox>
+	</object>
+</annotation>

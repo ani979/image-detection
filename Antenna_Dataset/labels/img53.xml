@@ -1,0 +1,26 @@
+<annotation>
+	<folder>xml</folder>
+	<filename>img53.jpg</filename>
+	<path>C:\Users\zenier\Desktop\Antenna Images\xml\img53.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>654</width>
+		<height>1200</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>sa</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>136</xmin>
+			<ymin>81</ymin>
+			<xmax>468</xmax>
+			<ymax>1103</ymax>
+		</bndbox>
+	</object>
+</annotation>

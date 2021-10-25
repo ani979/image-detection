@@ -1,0 +1,26 @@
+<annotation>
+	<folder>xml</folder>
+	<filename>img20.jpg</filename>
+	<path>C:\Users\zenier\Desktop\Antenna Images\xml\img20.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>500</width>
+		<height>500</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>sa</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>162</xmin>
+			<ymin>19</ymin>
+			<xmax>292</xmax>
+			<ymax>477</ymax>
+		</bndbox>
+	</object>
+</annotation>

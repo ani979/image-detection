@@ -1,0 +1,38 @@
+<annotation>
+	<folder>xml</folder>
+	<filename>img151.jpg</filename>
+	<path>C:\Users\zenier\Desktop\Antenna Images\xml\img151.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1224</width>
+		<height>1358</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>sa</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>858</xmin>
+			<ymin>621</ymin>
+			<xmax>918</xmax>
+			<ymax>701</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>ba</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>878</xmin>
+			<ymin>741</ymin>
+			<xmax>930</xmax>
+			<ymax>798</ymax>
+		</bndbox>
+	</object>
+</annotation>

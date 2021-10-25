@@ -1,0 +1,12 @@
+#train: ../Road_Sign_Dataset/images/train/ 
+#val:  ../Road_Sign_Dataset/images/val/
+#test: ../Road_Sign_Dataset/images/test/
+
+train: /content/gdrive/My Drive/yolov5/Antenna_Dataset/images/train/
+val:  /content/gdrive/My Drive/yolov5/Antenna_Dataset/images/val/
+test: /content/gdrive/My Drive/yolov5/Antenna_Dataset/images/test/
+# number of classes
+nc: 2
+
+# class names
+names: ["sa","ba"]

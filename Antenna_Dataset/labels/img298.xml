@@ -1,0 +1,26 @@
+<annotation>
+	<folder>xml</folder>
+	<filename>img298.jpg</filename>
+	<path>C:\Users\zenier\Desktop\Antenna Images\xml\img298.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>746</width>
+		<height>482</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>ba</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>269</xmin>
+			<ymin>50</ymin>
+			<xmax>421</xmax>
+			<ymax>222</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,38 @@
+<annotation>
+	<folder>xml</folder>
+	<filename>img436.jpg</filename>
+	<path>C:\Users\zenier\Desktop\Antenna Images\xml\img436.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>800</width>
+		<height>800</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>sa</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>107</xmin>
+			<ymin>183</ymin>
+			<xmax>193</xmax>
+			<ymax>495</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>sa</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>215</xmin>
+			<ymin>198</ymin>
+			<xmax>267</xmax>
+			<ymax>472</ymax>
+		</bndbox>
+	</object>
+</annotation>

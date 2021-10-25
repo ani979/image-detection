@@ -1,0 +1,26 @@
+<annotation>
+	<folder>xml</folder>
+	<filename>img45.jpg</filename>
+	<path>C:\Users\zenier\Desktop\Antenna Images\xml\img45.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>2480</width>
+		<height>3507</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>ba</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>358</xmin>
+			<ymin>613</ymin>
+			<xmax>1948</xmax>
+			<ymax>2222</ymax>
+		</bndbox>
+	</object>
+</annotation>

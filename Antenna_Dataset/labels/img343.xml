@@ -1,0 +1,38 @@
+<annotation>
+	<folder>xml</folder>
+	<filename>img343.jpg</filename>
+	<path>C:\Users\zenier\Desktop\Antenna Images\xml\img343.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1000</width>
+		<height>1000</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>ba</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>70</xmin>
+			<ymin>242</ymin>
+			<xmax>306</xmax>
+			<ymax>484</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>ba</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>3</xmin>
+			<ymin>520</ymin>
+			<xmax>230</xmax>
+			<ymax>773</ymax>
+		</bndbox>
+	</object>
+</annotation>
