@@ -1,0 +1,26 @@
+<annotation>
+	<folder>No Light</folder>
+	<filename>created1721635225881 - Copy (2).jpg</filename>
+	<path>C:\Users\zenier\Desktop\hackathon\No Light\created1721635225881 - Copy (2).jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>4000</width>
+		<height>1844</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>WhiteWireIssue</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>789</xmin>
+			<ymin>1025</ymin>
+			<xmax>3049</xmax>
+			<ymax>1471</ymax>
+		</bndbox>
+	</object>
+</annotation>
