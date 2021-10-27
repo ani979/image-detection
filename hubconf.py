@@ -37,8 +37,11 @@ def _create(name, pretrained=True, channels=3, classes=80, autoshape=True, verbo
     check_requirements(exclude=('tensorboard', 'thop', 'opencv-python'))
     set_logging(verbose=verbose)
 
-    save_dir = Path('') if str(name).endswith('.pt') else file.parent
+    #save_dir = Path('') if str(name).endswith('.pt') else file.parent
+    save_dir = file.parent
+    print(name)
     path = (save_dir / name).with_suffix('.pt')  # checkpoint path
+    print("path",path)
     try:
         device = select_device(('0' if torch.cuda.is_available() else 'cpu') if device is None else device)
 
@@ -65,7 +68,7 @@ def _create(name, pretrained=True, channels=3, classes=80, autoshape=True, verbo
         raise Exception(s) from e
 
 
-def custom(path='path/to/model.pt', autoshape=True, verbose=True, device=None):
+def custom(path='runs/train/yolo_road_det4/weights/best.pt', autoshape=True, verbose=True, device=None):
     # YOLOv5 custom or local model
     return _create(path, autoshape=autoshape, verbose=verbose, device=device)
 
