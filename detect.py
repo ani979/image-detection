@@ -1,4 +1,4 @@
-# YOLOv5 🚀 by Ultralytics, GPL-3.0 license
+# YOLOv5 ðŸš€ by Ultralytics, GPL-3.0 license
 """
 Run inference on images, videos, directories, streams, etc.
 
@@ -40,8 +40,8 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
         max_det=1000,  # maximum detections per image
         device='',  # cuda device, i.e. 0 or 0,1,2,3 or cpu
         view_img=False,  # show results
-        save_txt=True,  # save results to *.txt  ##########
-        save_conf=False,  # save confidences in --save-txt labels
+        save_txt=True,  # save results to *.txt          ###########Changed
+        save_conf=True,  # save confidences in --save-txt labels        ###########Changed
         save_crop=False,  # save cropped prediction boxes
         nosave=False,  # do not save images/videos
         classes=None,  # filter by class: --class 0, or --class 0 2 3
@@ -89,7 +89,7 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
             modelc.load_state_dict(torch.load('resnet50.pt', map_location=device)['model']).to(device).eval()
     elif onnx:
         if dnn:
-            # check_requirements(('opencv-python>=4.5.4',))
+            check_requirements(('opencv-python>=4.5.4',))
             net = cv2.dnn.readNetFromONNX(w)
         else:
             check_requirements(('onnx', 'onnxruntime-gpu' if torch.has_cuda else 'onnxruntime'))

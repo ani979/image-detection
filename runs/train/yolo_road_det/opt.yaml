@@ -1,7 +1,7 @@
 weights: yolov5s.pt
-cfg: /content/gdrive/My Drive/yolov5/models/yolov5s.yaml
+cfg: /content/gdrive/My Drive/HackathonYOLOV5/models/yolov5s.yaml
 data: road_sign_data.yaml
-hyp: /content/gdrive/My Drive/yolov5/data/hyps/hyp.scratch.yaml
+hyp: /content/gdrive/My Drive/HackathonYOLOV5/data/hyps/hyp.scratch.yaml
 epochs: 100
 batch_size: 32
 imgsz: 640
