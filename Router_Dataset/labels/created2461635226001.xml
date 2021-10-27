@@ -1,0 +1,26 @@
+<annotation>
+	<folder>No Light</folder>
+	<filename>created2461635226001.jpg</filename>
+	<path>/Users/anupamadas/Documents/Numbering/No Light/created2461635226001.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1844</width>
+		<height>4000</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>WhiteWireIssue</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>174</xmin>
+			<ymin>2045</ymin>
+			<xmax>1759</xmax>
+			<ymax>2411</ymax>
+		</bndbox>
+	</object>
+</annotation>

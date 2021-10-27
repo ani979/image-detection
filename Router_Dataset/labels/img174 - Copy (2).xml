@@ -1,0 +1,26 @@
+<annotation>
+	<folder>LOS Light Red</folder>
+	<filename>img174 - Copy (2).jpg</filename>
+	<path>/Users/anupamadas/Documents/Numbering/LOS Light Red/img174 - Copy (2).jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>4000</width>
+		<height>1844</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>LOSConnectionIssue</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1542</xmin>
+			<ymin>897</ymin>
+			<xmax>1949</xmax>
+			<ymax>1377</ymax>
+		</bndbox>
+	</object>
+</annotation>
