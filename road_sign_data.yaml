@@ -2,9 +2,9 @@
 #val:  ../Road_Sign_Dataset/images/val/
 #test: ../Road_Sign_Dataset/images/test/
 
-train: /content/gdrive/My Drive/HackathonYOLOV5/Router_Dataset/images/train/
-val:  /content/gdrive/My Drive/HackathonYOLOV5/Router_Dataset/images/val/
-test: /content/gdrive/My Drive/HackathonYOLOV5/Router_Dataset/images/test/
+train: Router_Dataset/images/train/
+val:  Router_Dataset/images/val/
+test: Router_Dataset/images/test/
 
 # number of classes
 nc: 2

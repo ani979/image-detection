@@ -23,12 +23,15 @@ if str(ROOT) not in sys.path:
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
 from models.experimental import attempt_load
-from utils.datasets import LoadImages, LoadStreams
+from utils.datasets import LoadImages, LoadStreams, LoadImagesFromURL
 from utils.general import apply_classifier, check_img_size, check_imshow, check_requirements, check_suffix, colorstr, \
     increment_path, non_max_suppression, print_args, save_one_box, scale_coords, set_logging, \
     strip_optimizer, xyxy2xywh
 from utils.plots import Annotator, colors
 from utils.torch_utils import load_classifier, select_device, time_sync
+import boto3
+from botocore.exceptions import ClientError
+import urllib
 
 
 @torch.no_grad()
@@ -60,8 +63,7 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
         ):
     source = str(source)
     save_img = not nosave and not source.endswith('.txt')  # save inference images
-    webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
-        ('rtsp://', 'rtmp://', 'http://', 'https://'))
+    webcam = source.isnumeric() or source.endswith('.txt') 
 
     # Directories
     save_dir = increment_path(Path(project) / name, exist_ok=exist_ok)  # increment run
@@ -124,7 +126,10 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt)
         bs = len(dataset)  # batch_size
     else:
-        dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt)
+        if(source.lower().startswith(('http://', 'https://'))):
+            dataset = LoadImagesFromURL(source, img_size=imgsz, stride=stride, auto=pt)
+        else:
+            dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt)
         bs = 1  # batch_size
     vid_path, vid_writer = [None] * bs, [None] * bs
 
@@ -239,6 +244,15 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
             if save_img:
                 if dataset.mode == 'image':
                     cv2.imwrite(save_path, im0)
+                    # image_string = cv2.imencode('.jpg', im0)[1].tostring()
+                    print("p", urllib.parse.quote(p.name, safe=''))
+                    print("save_path", save_path)
+                    s3_client = boto3.client('s3', aws_access_key_id="AKIA3GOL3JACUTL3FA6O",
+                        aws_secret_access_key="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")
+                    try:
+                        response = s3_client.upload_file(save_path, "k-pics", urllib.parse.quote(p.name, safe=''))
+                    except ClientError as e:
+                        return False
                 else:  # 'video' or 'stream'
                     if vid_path[i] != save_path:  # new video
                         vid_path[i] = save_path
