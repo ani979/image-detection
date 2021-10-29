@@ -15,6 +15,7 @@ import cv2
 import numpy as np
 import torch
 import torch.backends.cudnn as cudnn
+from constants import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # YOLOv5 root directory
@@ -247,8 +248,8 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
                     # image_string = cv2.imencode('.jpg', im0)[1].tostring()
                     print("p", urllib.parse.quote(p.name, safe=''))
                     print("save_path", save_path)
-                    s3_client = boto3.client('s3', aws_access_key_id="AKIA3GOL3JACUTL3FA6O",
-                        aws_secret_access_key="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")
+                    s3_client = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY_ID,
+                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
                     try:
                         response = s3_client.upload_file(save_path, "k-pics", urllib.parse.quote(p.name, safe=''))
                     except ClientError as e:
