@@ -16,6 +16,7 @@ import numpy as np
 import torch
 import torch.backends.cudnn as cudnn
 import constants
+import shutil
 
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # YOLOv5 root directory
@@ -228,6 +229,12 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
                     if save_img or save_crop or view_img:  # Add bbox to image
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
+                        print("label", label)
+                        split_label = label.split(" ")
+                        textToAdd = issue_to_string(split_label)
+                        with open(txt_path + '.txt', 'a') as f:
+                            f.write(textToAdd)
+                        print("text is ", textToAdd)
                         annotator.box_label(xyxy, label, color=colors(c, True))
                         if save_crop:
                             save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
@@ -270,12 +277,37 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
     # Print results
     t = tuple(x / seen * 1E3 for x in dt)  # speeds per image
     print(f'Speed: %.1fms pre-process, %.1fms inference, %.1fms NMS per image at shape {(1, 3, *imgsz)}' % t)
+    if (os.path.isfile(txt_path + '.txt')):
+        a_file = open(txt_path + '.txt')
+        next(a_file)
+        with open("image_analysis.txt", 'w') as f:
+            for line in a_file:
+                f.write(line.rstrip())
+    else:
+        with open("image_analysis.txt", 'w') as f:
+            f.write("")      
+
+    #shutil.copy(txt_path + '.txt', "image_analysis.txt")
     if save_txt or save_img:
         s = f"\n{len(list(save_dir.glob('labels/*.txt')))} labels saved to {save_dir / 'labels'}" if save_txt else ''
         print(f"Results saved to {colorstr('bold', save_dir)}{s}")
     if update:
         strip_optimizer(weights)  # update model (to fix SourceChangeWarning)
 
+def issue_to_string(args):
+    print("args", args)
+    switcher = {
+        "LOSConnectionIssue": "LOS. <b>LOS means loss of signal</b>. <br/><p>Your modem (which acts as a router too since internet service providers or ISPs usually give a modem-router combo device) may be able to establish a local network connection for your personal devices, but it itself cannot communicate to your ISP because of signal loss.</p><br/> The issue can be fixed with <ul><li>Check if modem is connected</li><li>Throw away your router</li></ul>",
+        1: "one",
+        2: "two",
+    }
+    percentage = float(args[1]) * 100
+    conf_text = f"Zinier's AI has predicted with <b>{percentage}%</b> confidence that the issue is with "
+    # get() method of dictionary data type returns
+    # value of passed argument if it is present
+    # in dictionary otherwise second argument will
+    # be assigned as default value of passed argument
+    return conf_text + switcher.get(args[0], "nothing")
 
 def parse_opt():
     parser = argparse.ArgumentParser()

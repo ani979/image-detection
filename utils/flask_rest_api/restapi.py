@@ -36,11 +36,16 @@ def detect():
         # subprocess.run("ls")
         subprocess.run(['python3', '../../detect.py', 
                 '--source', 
-                request.json['filepath'], '--weights', '../../runs/train/yolo_road_det4/weights/best.pt', "--conf", "0.25"])
+                request.json['filepath'], '--weights', '../../runs/train/yolo_road_det4/weights/best.pt', "--conf", "0.25", "--save-txt", "--save-conf"])
+        line = ''
+        with open('image_analysis.txt', 'r') as analysisFile:
+            for line_from_file in analysisFile:
+                line += line_from_file
         return Response(
             response=json.dumps({
                 "data": {
-                    "url": f'https://k-pics.s3.ap-south-1.amazonaws.com/{fileName}'
+                    "url": f'https://k-pics.s3.ap-south-1.amazonaws.com/{fileName}',
+                    "line": line
                 }
             }),
             status=201,
