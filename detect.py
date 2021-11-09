@@ -298,8 +298,14 @@ def issue_to_string(args):
     print("args", args)
     switcher = {
         "LOSConnectionIssue": "LOS. <b>LOS means loss of signal</b>. <br/><p>Your modem (which acts as a router too since internet service providers or ISPs usually give a modem-router combo device) may be able to establish a local network connection for your personal devices, but it itself cannot communicate to your ISP because of signal loss.</p><br/> The issue can be fixed with <ul><li>Check if modem is connected</li><li>Throw away your router</li></ul>",
-        1: "one",
-        2: "two",
+        "WhiteWireIssue": "<h1>None of the Lights are on</h1><p>It seems the router is off. You can try checking the main wire or plug. It might also occur due to loose connection.</p>",
+        "FireExtinguisherMissing": "<h1>Fire Extinguisher is missing</h1><p>Please install a fire extinguisher to complete the setup.</p>",
+        "FireExtinguisherSignMissing": "<h1>Signs for fire extinguisher guidelines are missing</h1><p>Please include the required signs and guidelines to complete the setup.</p>",
+        "IncorrectLANWire": "<h1>Wrong LAN configuration</h1><p>It seems wrong wire is plugged into LAN port. Please remove it to get the router working.</p>",
+        "TELconnectionLost": "<h1>No Wire connected to TEL port</h1><p>Please plug the TEL wire into TEL port to resolve the issue.</p>",
+        "PowConnectionLost": "<h1>Power Plug is not connected</h1><p>Please connect the power wire to POWER port.</p>",
+        "WifiStatusIssue": "<h1>Issue with Wifi Status Port </h1><p>No cable or DSL signal detected on the line.To resolve this, please check issues with wire connected to STATUS port.</p>",
+        "WLANissue": "<h1>WLAN connection is faulty</h1><p>IYou can try checking the WLAN wire. Make sure there is no loose connection in WLAN port.</p>"
     }
     percentage = float(args[1]) * 100
     conf_text = f"Zinier's AI has predicted with <b>{percentage}%</b> confidence that the issue is with "
