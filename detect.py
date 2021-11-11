@@ -278,12 +278,14 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
     # Print results
     
     print("text is ", textToAdd)
+    all_items = "<br/><p>The items required for complete Fire Safety Components installation are:<ul><li>Alarm</li><li>BeeperSign</li><li>FireSafetyStationSign</li><li>FireDetectionStationSign</li><li>ElectricalEquipment</li><li>Switchboard</li><li>MainSwitch</li><li>FireExtinguisher</li><li>InformationNotice</li></ul></p>"
     print("txt_path is ", txt_path)
     if(len(det) > 1):
         with open(txt_path + '_lines.txt', 'w') as f:
             f.write(header_text)
             f.write(textToAdd)
-            f.write("</ul")
+            f.write("</ul>")
+            f.write(all_items)
             f.close()
         
     else:
@@ -334,26 +336,6 @@ def issue_to_string(args):
 def results_to_string(args):
     print("args", args)
     percentage = float(args[1]) * 100
-    # switcher = {
-    #     "LOSConnectionIssue": "LOS. <b>LOS means loss of signal</b>. <br/><p>Your modem (which acts as a router too since internet service providers or ISPs usually give a modem-router combo device) may be able to establish a local network connection for your personal devices, but it itself cannot communicate to your ISP because of signal loss.</p><br/> The issue can be fixed with <ul><li>Check if modem is connected</li><li>Throw away your router</li></ul>",
-    #     "WhiteWireIssue": "<h1>None of the Lights are on</h1><p>It seems the router is off. You can try checking the main wire or plug. It might also occur due to loose connection.</p>",
-    #     "FireExtinguisherMissing": "<h1>Fire Extinguisher is missing</h1><p>Please install a fire extinguisher to complete the setup.</p>",
-    #     "FireExtinguisherSignMissing": "<h1>Signs for fire extinguisher guidelines are missing</h1><p>Please include the required signs and guidelines to complete the setup.</p>",
-    #     "IncorrectLANWire": "<h1>Wrong LAN configuration</h1><p>It seems wrong wire is plugged into LAN port. Please remove it to get the router working.</p>",
-    #     "TELconnectionLost": "<h1>No Wire connected to TEL port</h1><p>Please plug the TEL wire into TEL port to resolve the issue.</p>",
-    #     "PowConnectionLost": "<h1>Power Plug is not connected</h1><p>Please connect the power wire to POWER port.</p>",
-    #     "WifiStatusIssue": "<h1>Issue with Wifi Status Port </h1><p>No cable or DSL signal detected on the line.To resolve this, please check issues with wire connected to STATUS port.</p>",
-    #     "WLANissue": "<h1>WLAN connection is faulty</h1><p>IYou can try checking the WLAN wire. Make sure there is no loose connection in WLAN port.</p>",
-    #     "FireSafetyStationSign": f"<li>{args[0]}, with <b>{percentage}%</b>confidence</li>",
-    #     "FireExtinguisherSign": f"<li>{args[0]}, with <b>{percentage}%</b>confidence</li>",
-    #     "FireDetectionStationSign": f"<li>{args[0]}, with <b>{percentage}%</b>confidence</li>",
-
-    # }
-    # conf_text = f"<p>Zinier's AI has predicted these results: </p><ul>"
-    # get() method of dictionary data type returns
-    # value of passed argument if it is present
-    # in dictionary otherwise second argument will
-    # be assigned as default value of passed argument
     return f"<li>{args[0]}, with <b>{percentage}%</b>confidence</li>"
 
 def parse_opt():
