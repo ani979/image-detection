@@ -40,7 +40,7 @@ def detect():
         line = ''
         with open('image_analysis.txt', 'r') as analysisFile:
             for line_from_file in analysisFile:
-                line += line_from_file
+                line = line_from_file
         return Response(
             response=json.dumps({
                 "data": {

@@ -195,6 +195,8 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
             pred = apply_classifier(pred, modelc, img, im0s)
 
         # Process predictions
+        header_text = "<p>Zinier's AI has predicted these results: </p><ul>"
+        textToAdd = ""
         for i, det in enumerate(pred):  # per image
             seen += 1
             if webcam:  # batch_size >= 1
@@ -219,6 +221,7 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
 
                 # Write results
+                print("length is", len(det))
                 for *xyxy, conf, cls in reversed(det):
                     if save_txt:  # Write to file
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
@@ -231,15 +234,13 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
                         print("label", label)
                         split_label = label.split(" ")
-                        textToAdd = issue_to_string(split_label)
-                        with open(txt_path + '.txt', 'a') as f:
-                            f.write(textToAdd)
-                        print("text is ", textToAdd)
+                        textToAdd += issue_to_string(split_label) if len(det) == 1 else results_to_string(split_label)
                         annotator.box_label(xyxy, label, color=colors(c, True))
                         if save_crop:
                             save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
 
             # Print time (inference-only)
+            
             print(f'{s}Done. ({t3 - t2:.3f}s)')
 
             # Stream results
@@ -275,13 +276,28 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
                     vid_writer[i].write(im0)
 
     # Print results
+    
+    print("text is ", textToAdd)
+    print("txt_path is ", txt_path)
+    if(len(det) > 1):
+        with open(txt_path + '_lines.txt', 'w') as f:
+            f.write(header_text)
+            f.write(textToAdd)
+            f.write("</ul")
+            f.close()
+        
+    else:
+        with open(txt_path + '_lines.txt', 'w') as f:
+            f.write(textToAdd)
+            f.close()
+    
     t = tuple(x / seen * 1E3 for x in dt)  # speeds per image
     print(f'Speed: %.1fms pre-process, %.1fms inference, %.1fms NMS per image at shape {(1, 3, *imgsz)}' % t)
-    if (os.path.isfile(txt_path + '.txt')):
-        a_file = open(txt_path + '.txt')
-        next(a_file)
+    if (os.path.isfile(txt_path + '_lines.txt')):
+        a_file = open(txt_path + '_lines.txt')
         with open("image_analysis.txt", 'w') as f:
             for line in a_file:
+                print(line)
                 f.write(line.rstrip())
     else:
         with open("image_analysis.txt", 'w') as f:
@@ -314,6 +330,31 @@ def issue_to_string(args):
     # in dictionary otherwise second argument will
     # be assigned as default value of passed argument
     return conf_text + switcher.get(args[0], "nothing")
+
+def results_to_string(args):
+    print("args", args)
+    percentage = float(args[1]) * 100
+    # switcher = {
+    #     "LOSConnectionIssue": "LOS. <b>LOS means loss of signal</b>. <br/><p>Your modem (which acts as a router too since internet service providers or ISPs usually give a modem-router combo device) may be able to establish a local network connection for your personal devices, but it itself cannot communicate to your ISP because of signal loss.</p><br/> The issue can be fixed with <ul><li>Check if modem is connected</li><li>Throw away your router</li></ul>",
+    #     "WhiteWireIssue": "<h1>None of the Lights are on</h1><p>It seems the router is off. You can try checking the main wire or plug. It might also occur due to loose connection.</p>",
+    #     "FireExtinguisherMissing": "<h1>Fire Extinguisher is missing</h1><p>Please install a fire extinguisher to complete the setup.</p>",
+    #     "FireExtinguisherSignMissing": "<h1>Signs for fire extinguisher guidelines are missing</h1><p>Please include the required signs and guidelines to complete the setup.</p>",
+    #     "IncorrectLANWire": "<h1>Wrong LAN configuration</h1><p>It seems wrong wire is plugged into LAN port. Please remove it to get the router working.</p>",
+    #     "TELconnectionLost": "<h1>No Wire connected to TEL port</h1><p>Please plug the TEL wire into TEL port to resolve the issue.</p>",
+    #     "PowConnectionLost": "<h1>Power Plug is not connected</h1><p>Please connect the power wire to POWER port.</p>",
+    #     "WifiStatusIssue": "<h1>Issue with Wifi Status Port </h1><p>No cable or DSL signal detected on the line.To resolve this, please check issues with wire connected to STATUS port.</p>",
+    #     "WLANissue": "<h1>WLAN connection is faulty</h1><p>IYou can try checking the WLAN wire. Make sure there is no loose connection in WLAN port.</p>",
+    #     "FireSafetyStationSign": f"<li>{args[0]}, with <b>{percentage}%</b>confidence</li>",
+    #     "FireExtinguisherSign": f"<li>{args[0]}, with <b>{percentage}%</b>confidence</li>",
+    #     "FireDetectionStationSign": f"<li>{args[0]}, with <b>{percentage}%</b>confidence</li>",
+
+    # }
+    # conf_text = f"<p>Zinier's AI has predicted these results: </p><ul>"
+    # get() method of dictionary data type returns
+    # value of passed argument if it is present
+    # in dictionary otherwise second argument will
+    # be assigned as default value of passed argument
+    return f"<li>{args[0]}, with <b>{percentage}%</b>confidence</li>"
 
 def parse_opt():
     parser = argparse.ArgumentParser()
