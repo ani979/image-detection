@@ -341,7 +341,7 @@ def results_to_string(args):
     print("args", args)
     percentage = float(args[1]) * 100
     found_items.append(args[0])
-    return f"<li>{args[0]}, with <b>{percentage}%</b>confidence</li>"
+    return f"<li>{args[0]}, with <b>{round(percentage)}%</b>confidence</li>"
 
 def parse_opt():
     parser = argparse.ArgumentParser()
