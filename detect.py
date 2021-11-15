@@ -289,7 +289,7 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
             missing_items = set(all_items_arr).difference(found_items)
             if len(missing_items) > 0:
                 empty_str = " "
-                f.write(f'<p>It has also predicted that you may have missed to install <q>{empty_str.join(missing_items)}</q></p>')
+                f.write(f'<br/><p>It has also predicted that you may have missed to install <q><b>{empty_str.join(missing_items)}</b></q></p>')
             f.close()
         
     else:
