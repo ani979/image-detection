@@ -34,7 +34,8 @@ from utils.torch_utils import load_classifier, select_device, time_sync
 import boto3
 from botocore.exceptions import ClientError
 import urllib
-
+all_items_arr = ["Alarm","BeeperSign","FireExtinguisherSign","FireSafetyStationSign","FireDetectionStationSign","ElectricalEquipment","Switchboard","MainSwitch","FireExtinguisher","InformationNotice"]
+found_items=[]
 
 @torch.no_grad()
 def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
@@ -66,7 +67,6 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
     source = str(source)
     save_img = not nosave and not source.endswith('.txt')  # save inference images
     webcam = source.isnumeric() or source.endswith('.txt') 
-
     # Directories
     save_dir = increment_path(Path(project) / name, exist_ok=exist_ok)  # increment run
     (save_dir / 'labels' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir
@@ -279,13 +279,17 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
     
     print("text is ", textToAdd)
     all_items = "<br/><p>The items required for complete Fire Safety Components installation are:<ul><li>Alarm</li><li>BeeperSign</li><li>FireSafetyStationSign</li><li>FireDetectionStationSign</li><li>ElectricalEquipment</li><li>Switchboard</li><li>MainSwitch</li><li>FireExtinguisher</li><li>InformationNotice</li></ul></p>"
+    
     print("txt_path is ", txt_path)
     if(len(det) > 1):
         with open(txt_path + '_lines.txt', 'w') as f:
             f.write(header_text)
             f.write(textToAdd)
             f.write("</ul>")
-            f.write(all_items)
+            missing_items = set(all_items_arr).difference(found_items)
+            if len(missing_items) > 0:
+                empty_str = " "
+                f.write(f'<p>It has also predicted that you may have missed to install <q>{empty_str.join(missing_items)}</q></p>')
             f.close()
         
     else:
@@ -336,6 +340,7 @@ def issue_to_string(args):
 def results_to_string(args):
     print("args", args)
     percentage = float(args[1]) * 100
+    found_items.append(args[0])
     return f"<li>{args[0]}, with <b>{percentage}%</b>confidence</li>"
 
 def parse_opt():
